@@ -2,10 +2,10 @@
 require_once 'twitteroauth.php';
 require_once 'alchemy.php';
 
-define('CONSUMER_KEY', 'JbKaf8IXqegdDTeRTP1Kg');
-define('CONSUMER_SECRET', '3shCkXUGTZKP9j3iZ2Q6YrnZlisnNFHqTidNxknVoVw');
-define('ACCESS_TOKEN', '2931935811-XwTiXVPZBi2Xytzr7LUhzylnoo2dAwUGaOD5HZ2');
-define('ACCESS_TOKEN_SECRET', '05Wq5yOzn23sMKiaeEwO9OZPET76SuAJI7aygF0NpBlDv');
+define('CONSUMER_KEY', '8WOhOiiIeE4raZXGMHinbF712');
+define('CONSUMER_SECRET', 'URsIwXFCCDPvMPNcGDSeZfIZXd5iVEuQyI5t6gkBQygiYnmsKZ');
+define('ACCESS_TOKEN', '2931935811-ZP3mA7cb1NKgo0HgpZrmVZnTlcia7AnajuL7Kja');
+define('ACCESS_TOKEN_SECRET', 'kOK002dJQpIdbkfmsTwYLable8xq3zwF0Ww8Kar9spwuJ');
 
 ?>
 <!DOCTYPE html>
@@ -61,9 +61,8 @@ define('ACCESS_TOKEN_SECRET', '05Wq5yOzn23sMKiaeEwO9OZPET76SuAJI7aygF0NpBlDv');
             <?php
             if (count($results)) {
                foreach ($results->statuses as $result) {
-                  $tweet = "https://twitter.com/{$result->user->screen_name}/status/{$result->id_str}";
                   $alchemtAPI = new AlchemyAPI();
-                  $sentiment = $alchemtAPI->analyse($tweet);
+                  $sentiment = $alchemtAPI->analyse(urlencode($result->text));
                   $alert = ($sentiment == 'positive' ? 'success' : ($sentiment == 'negative' ? 'danger' : 'warning'));
                   ?>
                   <div class="alert alert-<?=$alert?>" role="alert">

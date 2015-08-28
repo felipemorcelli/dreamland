@@ -61,9 +61,8 @@ define('ACCESS_TOKEN_SECRET', '');
             <?php
             if (count($results)) {
                foreach ($results->statuses as $result) {
-                  $tweet = "https://twitter.com/{$result->user->screen_name}/status/{$result->id_str}";
                   $alchemtAPI = new AlchemyAPI();
-                  $sentiment = $alchemtAPI->analyse($tweet);
+                  $sentiment = $alchemtAPI->analyse(urlencode($result->text));
                   $alert = ($sentiment == 'positive' ? 'success' : ($sentiment == 'negative' ? 'danger' : 'warning'));
                   ?>
                   <div class="alert alert-<?=$alert?>" role="alert">

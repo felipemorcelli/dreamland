@@ -36,7 +36,7 @@ class AlchemyAPI
                       ($result->docSentiment->score < 0.4 ? "negative" : "mixed"));
       } else return null;
       
-      return $result->docSentiment->type;
+      return $sentiment;
    }
 
 }
